@@ -53,7 +53,6 @@ PageStackWindow {
 
     Menu {
         id: myMenu
-        visualParent: pageStack
         MenuLayout {
             MenuItem { text: qsTr("Settings") }
             MenuItem { text: qsTr("About Travel Planner") }
