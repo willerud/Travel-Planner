@@ -19,24 +19,21 @@ PageStackWindow {
         visible: true
 
         ToolIcon {
-            iconId: pageStack.depth === 1 ? (myMenu.status === DialogStatus.Open ? "icon-m-toolbar-back" : "icon-m-toolbar-back-dimmed") : "icon-m-toolbar-back"
+            iconId: pageStack.depth === 1 ? "icon-m-toolbar-back-dimmed" : "icon-m-toolbar-back"
             anchors.left: (parent === undefined) ? undefined : parent.left
-            onClicked: {
-                myMenu.close()
-                pageStack.pop()
-            }
+            onClicked: pageStack.pop()
         }
 
-        ButtonRow {
-            TabButton {
-                text: qsTr("Search")
+        ToolButtonRow {
+            ToolIcon {
+                platformIconId: "toolbar-search"
                 onClicked: {
                     pageStack.clear()
                     pageStack.push(mainPage)
                 }
             }
-            TabButton {
-                text: qsTr("Location")
+            ToolIcon {
+                platformIconId: "toolbar-home"
                 onClicked: {
                     pageStack.clear()
                     pageStack.push(locationPage)
