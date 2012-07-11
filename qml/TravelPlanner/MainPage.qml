@@ -5,35 +5,35 @@ Page {
     id: searchPage
     tools: commonTools
 
-    Label {
-        anchors.verticalCenter: fromTextField.verticalCenter
-        anchors.right: fromTextField.left
-        anchors.rightMargin: 20
-        text: qsTr("From")
-    }
-
     TextField {
         id: fromTextField
-        width: 300
+        Label {
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            anchors.bottom: parent.top
+            anchors.bottomMargin: 2
+            text: qsTr("From")
+        }
+        width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: 20
+        anchors.topMargin: 40
         placeholderText: qsTr("Input departure location")
-    }
-
-    Label {
-        anchors.verticalCenter: toTextField.verticalCenter
-        anchors.right: toTextField.left
-        anchors.rightMargin: 20
-        text: qsTr("To")
     }
 
     TextField {
         id: toTextField
-        width: 300
+        Label {
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            anchors.bottom: parent.top
+            anchors.bottomMargin: 2
+            text: qsTr("To")
+        }
+        width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: fromTextField.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 40
         placeholderText: qsTr("Input arrival location")
     }
 }
