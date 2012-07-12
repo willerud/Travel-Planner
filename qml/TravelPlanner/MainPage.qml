@@ -36,4 +36,27 @@ Page {
         anchors.topMargin: 40
         placeholderText: qsTr("Input arrival location")
     }
+
+    Button {
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: toTextField.bottom
+        anchors.topMargin: 40
+        text: departureArrivalDialog.selectedIndex === 0 ? qsTr("Departure") : qsTr("Arrival")
+        onClicked: departureArrivalDialog.open()
+        SelectionDialog {
+            id: departureArrivalDialog
+            titleText: qsTr("When?")
+            selectedIndex: 0
+
+            model: ListModel {
+                ListElement {
+                    name: "Departure"
+                }
+                ListElement {
+                    name: "Arrival"
+                }
+            }
+        }
+    }
 }
