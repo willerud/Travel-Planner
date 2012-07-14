@@ -5,8 +5,11 @@ import com.nokia.extras 1.1
 Page {
     id: searchPage
     tools: commonTools
-    onPageStackChanged:
+    onPageStackChanged: {
         setDialogDateTimeToNow()
+        updateTimerButtonText()
+        updateDateButtonText()
+    }
 
     TextField {
         id: fromTextField
@@ -71,6 +74,7 @@ Page {
         rejectButtonText: qsTr("Cancel")
         acceptButtonText: qsTr("Use")
         fields: DateTime.Hours | DateTime.Minutes
+        onAccepted: updateTimerButtonText()
     }
 
     function setDialogDateTimeToNow() {
@@ -82,13 +86,19 @@ Page {
         timeDialog.minute = d.getMinutes();
     }
 
+    function updateTimerButtonText() {
+        var  t = new Date();
+        t.setHours(timeDialog.hour);
+        t.setMinutes(timeDialog.minute);
+        timeButton.text = Qt.formatDateTime(t, "hh:mm");
+    }
+
     TumblerButton {
         id: timeButton
         width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: departureArrivalButton.bottom
         anchors.topMargin: 40
-        text: timeDialog.hour + " : " + timeDialog.minute
         onClicked: timeDialog.open()
     }
 
@@ -97,6 +107,15 @@ Page {
         titleText: qsTr("Date")
         rejectButtonText: qsTr("Cancel")
         acceptButtonText: qsTr("Use")
+        onAccepted: updateDateButtonText()
+    }
+
+    function updateDateButtonText() {
+        var  d = new Date();
+        d.setFullYear(dateDialog.year);
+        d.setMonth(dateDialog.month);
+        d.setDate(dateDialog.day);
+        dateButton.text = Qt.formatDateTime(d, "ddd dd MMM yyyy");
     }
 
     TumblerButton {
@@ -105,7 +124,6 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: timeButton.bottom
         anchors.topMargin: 40
-        text: dateDialog.year + " - " + dateDialog.month + " - " + dateDialog.day
         onClicked: dateDialog.open()
     }
 }
