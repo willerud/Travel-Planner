@@ -5,7 +5,8 @@ import com.nokia.extras 1.1
 Page {
     id: searchPage
     tools: commonTools
-    onPageStackChanged:  setDialogDateToToday()
+    onPageStackChanged:
+        setDialogDateTimeToNow()
 
     TextField {
         id: fromTextField
@@ -64,6 +65,33 @@ Page {
         onClicked: departureArrivalDialog.open()
     }
 
+    TimePickerDialog {
+        id: timeDialog
+        titleText: qsTr("Time")
+        rejectButtonText: qsTr("Cancel")
+        acceptButtonText: qsTr("Use")
+        fields: DateTime.Hours | DateTime.Minutes
+    }
+
+    function setDialogDateTimeToNow() {
+        var d = new Date();
+        dateDialog.year = d.getFullYear();
+        dateDialog.month = d.getMonth();
+        dateDialog.day = d.getDate();
+        timeDialog.hour = d.getHours();
+        timeDialog.minute = d.getMinutes();
+    }
+
+    TumblerButton {
+        id: timeButton
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: departureArrivalButton.bottom
+        anchors.topMargin: 40
+        text: timeDialog.hour + " : " + timeDialog.minute
+        onClicked: timeDialog.open()
+    }
+
     DatePickerDialog {
         id: dateDialog
         titleText: qsTr("Date")
@@ -71,20 +99,13 @@ Page {
         acceptButtonText: qsTr("Use")
     }
 
-    function setDialogDateToToday() {
-        var d = new Date();
-        dateDialog.year = d.getFullYear();
-        dateDialog.month = d.getMonth();
-        dateDialog.day = d.getDate();
-    }
-
     TumblerButton {
         id: dateButton
         width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: departureArrivalButton.bottom
+        anchors.top: timeButton.bottom
         anchors.topMargin: 40
-        text: dateDialog.year + " " + dateDialog.month + " " + dateDialog.day
+        text: dateDialog.year + " - " + dateDialog.month + " - " + dateDialog.day
         onClicked: dateDialog.open()
     }
 }
