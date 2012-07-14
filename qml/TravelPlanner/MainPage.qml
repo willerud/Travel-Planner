@@ -126,4 +126,23 @@ Page {
         anchors.topMargin: 40
         onClicked: dateDialog.open()
     }
+
+    RadioButton {
+        id: oneWayTrip
+        anchors.left: parent.left
+        anchors.top: dateButton.bottom
+        anchors.topMargin: 40
+        text: "One-way trip"
+        checked: true
+        onClicked: returnTrip.checked = false
+    }
+
+    RadioButton {
+        id: returnTrip
+        anchors.left: parent.left
+        anchors.top: oneWayTrip.bottom
+        anchors.topMargin: 40
+        text: "Return trip"
+        onClicked: oneWayTrip.checked = false
+    }
 }
