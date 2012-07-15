@@ -127,22 +127,19 @@ Page {
         onClicked: dateDialog.open()
     }
 
-    RadioButton {
-        id: oneWayTrip
+    ButtonColumn {
         anchors.left: parent.left
         anchors.top: dateButton.bottom
         anchors.topMargin: 40
-        text: "One-way trip"
-        checked: true
-        onClicked: returnTrip.checked = false
-    }
 
-    RadioButton {
-        id: returnTrip
-        anchors.left: parent.left
-        anchors.top: oneWayTrip.bottom
-        anchors.topMargin: 40
-        text: "Return trip"
-        onClicked: oneWayTrip.checked = false
+        RadioButton {
+            id: oneWayTrip
+            text: "One-way trip"
+        }
+
+        RadioButton {
+            id: returnTrip
+            text: "Return trip"
+        }
     }
 }
