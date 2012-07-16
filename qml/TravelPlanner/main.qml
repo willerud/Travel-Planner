@@ -14,6 +14,10 @@ PageStackWindow {
         id: locationPage
     }
 
+    SelectPage {
+        id: selectPage
+    }
+
     ToolBarLayout {
         id: commonTools
         visible: true

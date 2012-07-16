@@ -142,4 +142,14 @@ Page {
             text: "Return trip"
         }
     }
+
+    Button {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 40
+        text: "Search"
+        onClicked: {
+            pageStack.push(selectPage)
+        }
+    }
 }
